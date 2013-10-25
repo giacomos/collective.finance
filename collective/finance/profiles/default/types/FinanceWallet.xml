@@ -5,8 +5,8 @@
  <property name="description"
     i18n:translate="">A container for finance managment</property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
- <property name="factory">wallet</property>
- <property name="add_view_expr">string:${folder_url}/++add++wallet</property>
+ <property name="factory">FinanceWallet</property>
+ <property name="add_view_expr">string:${folder_url}/++add++FinanceWallet</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
  <property name="global_allow">True</property>
@@ -23,7 +23,7 @@
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
- <property name="klass">collective.finance.content.Wallet</property>
+ <property name="klass">collective.finance.content.FinanceWallet</property>
  <property name="behaviors">
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
@@ -32,7 +32,7 @@
  </property>
  <property name="schema"></property>
  <property name="model_source"></property>
- <property name="model_file">collective.finance.schema:wallet.xml</property>
+ <property name="model_file">collective.finance.schema:FinanceWallet.xml</property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>
