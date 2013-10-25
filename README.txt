@@ -1,6 +1,6 @@
 Introduction
 ============
 
+Personal Finance Manager for Plone
 
-
-This product may contain traces of nuts.
+icons from : https://www.iconfinder.com/search/?q=iconset%3Afatcow

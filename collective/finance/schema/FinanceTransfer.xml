@@ -30,5 +30,11 @@
         <title>Category</title>
         <values/>
       </field>
+      <field name="currency" type="zope.schema.Choice">
+        <description/>
+        <required>False</required>
+        <title>Currency</title>
+        <vocabulary>collective.finance.currencies</vocabulary>
+      </field>
     </schema>
 </model>

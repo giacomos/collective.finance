@@ -19,10 +19,10 @@ class CatalogVocabularyFactory(object):
             return SimpleVocabulary([])
 
         catalog = getToolByName(context, "portal_catalog", None)
+        if catalog is None or not hasattr(context, 'get_wallet'):
+            return SimpleVocabulary([])
         wallet = context.get_wallet()
         path = '/'.join(wallet.getPhysicalPath())
-        if catalog is None:
-            return SimpleVocabulary([])
         terms = []
         brains = catalog.searchResults(portal_type=self.portal_type,
                                        path=path)

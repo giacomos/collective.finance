@@ -23,10 +23,12 @@
     <values/>
   </field>
   <field name="category" type="zope.schema.Choice">
-    <description/>
+    <description i18n:domain="plone" i18n:translate="help_tags">
+        Tags are commonly used for ad-hoc organization of content.
+    </description>
     <required>False</required>
-    <title>Category</title>
-    <values/>
+    <title i18n:domain="plone" i18n:translate="label_tags">Tags</title>
+    <values />
   </field>
   <field name="currency" type="zope.schema.Choice">
     <description/>
