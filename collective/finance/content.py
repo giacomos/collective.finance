@@ -3,36 +3,36 @@ from plone.dexterity.content import Item
 from plone.dexterity.content import Container
 from zope.interface import implements
 
-from collective.finance.interfaces import IWallet
-from collective.finance.interfaces import IAccount
-from collective.finance.interfaces import ITransaction
-from collective.finance.interfaces import ITransfer
+from collective.finance.interfaces import IFinanceWallet
+from collective.finance.interfaces import IFinanceAccount
+from collective.finance.interfaces import IFinanceTransaction
+from collective.finance.interfaces import IFinanceTransfer
 
 
-class Wallet(Container):
+class FinanceWallet(Container):
     '''
     Applicazione class
     '''
-    implements(IWallet)
+    implements(IFinanceWallet)
 
     def get_wallet(self):
         return self.aq_inner
 
-class Transaction(Item):
+class FinanceTransaction(Item):
     '''
     Applicazione class
     '''
-    implements(ITransaction)
+    implements(IFinanceTransaction)
 
-class Transfer(Item):
+class FinanceTransfer(Item):
     '''
     Applicazione class
     '''
-    implements(ITransfer)
+    implements(IFinanceTransfer)
 
 
-class Account(Item):
+class FinanceAccount(Item):
     '''
     Applicazione class
     '''
-    implements(IAccount)
+    implements(IFinanceAccount)

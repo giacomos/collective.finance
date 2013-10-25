@@ -1,17 +1,17 @@
 from zope.interface import Interface
 
-class IWallet(Interface):
+class IFinanceWallet(Interface):
     """
     """
 
-class IAccount(Interface):
+class IFinanceAccount(Interface):
     """
     """
 
-class ITransfer(Interface):
+class IFinanceTransfer(Interface):
     """
     """
 
-class ITransaction(Interface):
+class IFinanceTransaction(Interface):
     """
     """

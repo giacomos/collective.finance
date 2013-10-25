@@ -1,9 +1,0 @@
-<model xmlns="http://namespaces.plone.org/supermodel/schema"                        
-    xmlns:security="http://namespaces.plone.org/supermodel/security"                
-    xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"                  
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"                                
-    xmlns:form="http://namespaces.plone.org/supermodel/form"                        
-    i18n:domain="movingfluid.policy">                                               
-
-    <schema></schema>
-</model>

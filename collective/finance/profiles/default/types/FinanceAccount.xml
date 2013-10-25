@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<object name="transfer" meta_type="Dexterity FTI" i18n:domain="plone"
+<object name="finance-account" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Transfer</property>
+ <property name="title" i18n:translate="">Account</property>
  <property name="description" i18n:translate="">None</property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
- <property name="factory">transfer</property>
+ <property name="factory">FinanceAccount</property>
  <property
-    name="add_view_expr">string:${folder_url}/++add++transfer</property>
+    name="add_view_expr">string:${folder_url}/++add++FinanceAccount</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
  <property name="global_allow">False</property>
@@ -19,13 +19,15 @@
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
- <property name="klass">collective.finance.content.Transfer</property>
+ <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
  </property>
- <property name="schema"></property>
- <property name="model_source"></property>
- <property name="model_file">collective.finance.schema:transfer.xml</property>
+ <property name="schema">collective.finance.content.FinanceAccount</property>
+ <property
+    name="model_source"></property>
+ <property name="model_file">collective.finance.schema:FinanceAccount.xml</property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>

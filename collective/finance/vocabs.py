@@ -42,7 +42,7 @@ class SimpleVocabularyFactory(object):
                     for value, title in self.vocab.iteritems()]
         return SimpleVocabulary(sorted(terms, key=lambda elem: elem.title))
 
-AccountsVocabularyFactory = CatalogVocabularyFactory('finance-account')
-TransactionsVocabularyFactory = CatalogVocabularyFactory('transaction')
-TransfersVocabularyFactory = CatalogVocabularyFactory('transfer')
+AccountsVocabularyFactory = CatalogVocabularyFactory('FinanceAccount')
+TransactionsVocabularyFactory = CatalogVocabularyFactory('FinanceTransaction')
+TransfersVocabularyFactory = CatalogVocabularyFactory('FinanceTransfer')
 CurrenciesVocabularyFactory = SimpleVocabularyFactory({ccy.currency(c).code: ccy.currency(c).name for c in ccy.all()})

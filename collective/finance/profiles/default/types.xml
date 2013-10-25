@@ -2,7 +2,7 @@
 <object name="portal_types" meta_type="Plone Types Tool">
  <property name="title">Controls the available content types in your portal</property>
  <object name="wallet" meta_type="Dexterity FTI"/>
- <object name="finance-account" meta_type="Dexterity FTI"/>
- <object name="transaction" meta_type="Dexterity FTI"/>
- <object name="transfer" meta_type="Dexterity FTI"/>
+ <object name="FinanceAccount" meta_type="Dexterity FTI"/>
+ <object name="FinanceTransaction" meta_type="Dexterity FTI"/>
+ <object name="FinanceTransfer" meta_type="Dexterity FTI"/>
 </object>
