@@ -9,7 +9,7 @@
     name="add_view_expr">string:${folder_url}/++add++transfer</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>
@@ -19,52 +19,13 @@
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
- <property name="klass">plone.dexterity.content.Container</property>
+ <property name="klass">collective.finance.content.Transfer</property>
  <property name="behaviors">
   <element value="plone.app.content.interfaces.INameFromTitle"/>
  </property>
  <property name="schema"></property>
- <property
-    name="model_source">&lt;model xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-    &lt;schema&gt;
-      &lt;field name="date" type="zope.schema.Datetime"&gt;
-        &lt;description/&gt;
-        &lt;required&gt;False&lt;/required&gt;
-        &lt;title&gt;Date&lt;/title&gt;
-      &lt;/field&gt;
-      &lt;field name="from_account" type="zope.schema.Choice"&gt;
-        &lt;default&gt;cash&lt;/default&gt;
-        &lt;description/&gt;
-        &lt;title&gt;From Account&lt;/title&gt;
-        &lt;values&gt;
-          &lt;element&gt;cash&lt;/element&gt;
-          &lt;element&gt;bank&lt;/element&gt;
-          &lt;element&gt;credit card&lt;/element&gt;
-        &lt;/values&gt;
-      &lt;/field&gt;
-      &lt;field name="to_account" type="zope.schema.Choice"&gt;
-        &lt;default&gt;cash&lt;/default&gt;
-        &lt;description/&gt;
-        &lt;title&gt;To Account&lt;/title&gt;
-        &lt;values&gt;
-          &lt;element&gt;cash&lt;/element&gt;
-          &lt;element&gt;bank&lt;/element&gt;
-          &lt;element&gt;credit card&lt;/element&gt;
-        &lt;/values&gt;
-      &lt;/field&gt;
-      &lt;field name="ammount" type="zope.schema.Float"&gt;
-        &lt;description/&gt;
-        &lt;title&gt;Ammount&lt;/title&gt;
-      &lt;/field&gt;
-      &lt;field name="category" type="zope.schema.Choice"&gt;
-        &lt;description/&gt;
-        &lt;required&gt;False&lt;/required&gt;
-        &lt;title&gt;Category&lt;/title&gt;
-        &lt;values/&gt;
-      &lt;/field&gt;
-    &lt;/schema&gt;
-  &lt;/model&gt;</property>
- <property name="model_file"></property>
+ <property name="model_source"></property>
+ <property name="model_file">collective.finance.schema:transfer.xml</property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>

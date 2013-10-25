@@ -25,6 +25,7 @@ setup(name='collective.finance',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'ccy',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

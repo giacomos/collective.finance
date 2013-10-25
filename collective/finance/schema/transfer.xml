@@ -1,0 +1,34 @@
+<model xmlns="http://namespaces.plone.org/supermodel/schema"                        
+    xmlns:security="http://namespaces.plone.org/supermodel/security"                
+    xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"                  
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"                                
+    xmlns:form="http://namespaces.plone.org/supermodel/form"                        
+    i18n:domain="movingfluid.policy">                                               
+    <schema>
+      <field name="date" type="zope.schema.Datetime">
+        <description/>
+        <required>False</required>
+        <title>Date</title>
+      </field>
+      <field name="from_account" type="zope.schema.Choice">
+        <description/>
+        <title>From Account</title>
+        <vocabulary>collective.finance.accounts</vocabulary>
+      </field>
+      <field name="to_account" type="zope.schema.Choice">
+        <description/>
+        <title>To Account</title>
+        <vocabulary>collective.finance.accounts</vocabulary>
+      </field>
+      <field name="ammount" type="zope.schema.Float">
+        <description/>
+        <title>Ammount</title>
+      </field>
+      <field name="category" type="zope.schema.Choice">
+        <description/>
+        <required>False</required>
+        <title>Category</title>
+        <values/>
+      </field>
+    </schema>
+</model>

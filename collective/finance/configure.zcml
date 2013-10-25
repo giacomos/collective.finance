@@ -14,6 +14,21 @@
       description="Installs the collective.finance package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
-  
+
+    <utility
+      component=".vocabs.AccountsVocabularyFactory"
+      name="collective.finance.accounts"
+      />
+    <utility
+      component=".vocabs.TransactionsVocabularyFactory"
+      name="collective.finance.transactions"
+      />
+    <utility
+      component=".vocabs.TransfersVocabularyFactory"
+      name="collective.finance.transfers"
+      />
+    <utility
+      component=".vocabs.CurrenciesVocabularyFactory"
+      name="collective.finance.currencies"
+      />
 </configure>

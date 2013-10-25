@@ -1,0 +1,50 @@
+<model xmlns="http://namespaces.plone.org/supermodel/schema"                        
+    xmlns:security="http://namespaces.plone.org/supermodel/security"                
+    xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"                  
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"                                
+    xmlns:form="http://namespaces.plone.org/supermodel/form"                        
+    i18n:domain="movingfluid.policy">                                               
+  <schema>    
+
+  <field name="date" type="zope.schema.Datetime">
+    <description/>
+    <title>Date</title>
+  </field>
+  <field name="account" type="zope.schema.Choice">
+    <description/>
+    <title>Account</title>
+    <required>True</required>
+    <vocabulary>collective.finance.accounts</vocabulary>
+  </field>
+  <field name="payee" type="zope.schema.Choice">
+    <description/>
+    <required>False</required>
+    <title>Payee</title>
+    <values/>
+  </field>
+  <field name="category" type="zope.schema.Choice">
+    <description/>
+    <required>False</required>
+    <title>Category</title>
+    <values/>
+  </field>
+  <field name="currency" type="zope.schema.Choice">
+    <description/>
+    <required>False</required>
+    <title>Currency</title>
+    <vocabulary>collective.finance.currencies</vocabulary>
+  </field>
+  <field name="ammount" type="zope.schema.Float">
+    <description/>
+    <title>Ammount</title>
+  </field>
+  <field name="income_expense" type="zope.schema.Choice">
+    <description/>
+    <title>Income/Expense</title>
+    <values>
+      <element>Expense</element>
+      <element>Income</element>
+    </values>
+  </field>
+</schema>
+</model>
