@@ -1,4 +1,4 @@
-import ccy
+from money import CURRENCY
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
@@ -45,4 +45,4 @@ class SimpleVocabularyFactory(object):
 AccountsVocabularyFactory = CatalogVocabularyFactory('FinanceAccount')
 TransactionsVocabularyFactory = CatalogVocabularyFactory('FinanceTransaction')
 TransfersVocabularyFactory = CatalogVocabularyFactory('FinanceTransfer')
-CurrenciesVocabularyFactory = SimpleVocabularyFactory({ccy.currency(c).code: ccy.currency(c).name for c in ccy.all()})
+CurrenciesVocabularyFactory = SimpleVocabularyFactory({v.code: v.name for k,v in CURRENCY.iteritems()})

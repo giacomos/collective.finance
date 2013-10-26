@@ -26,7 +26,7 @@ setup(name='collective.finance',
       install_requires=[
           'setuptools',
           'plone.app.dexterity',
-          'ccy',
+          'python-money',
           # -*- Extra requirements: -*-
       ],
       extras_require={
