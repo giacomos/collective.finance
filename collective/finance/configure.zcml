@@ -5,7 +5,6 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.finance">
 
-  <five:registerPackage package="." initialize=".initialize" />
   <includeDependencies package="." />
   <i18n:registerTranslations directory="locales" />
 
