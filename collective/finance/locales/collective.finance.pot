@@ -1,0 +1,102 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-10-26 13:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.finance\n"
+
+#: ../schema/FinanceTransaction.xml
+msgid "Account"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "Account Type"
+msgstr ""
+
+#: ../schema/FinanceTransaction.xml
+#: ../schema/FinanceTransfer.xml
+msgid "Ammount"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+#: ../schema/FinanceTransaction.xml
+#: ../schema/FinanceTransfer.xml
+msgid "Currency"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "Exclude from budget"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "Exclude from reports"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "Exclude from summary"
+msgstr ""
+
+#: ../schema/FinanceTransaction.xml
+msgid "Expense"
+msgstr ""
+
+#: ../schema/FinanceTransfer.xml
+msgid "From Account"
+msgstr ""
+
+#: ../schema/FinanceTransaction.xml
+msgid "Income"
+msgstr ""
+
+#: ../schema/FinanceTransaction.xml
+msgid "Income/Expense"
+msgstr ""
+
+#: ../schema/FinanceTransaction.xml
+msgid "Payee"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "Select if this account was closed"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "Starting balance"
+msgstr ""
+
+#: ../schema/FinanceTransfer.xml
+msgid "To Account"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "asset"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "bank"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "cash"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "credit card"
+msgstr ""
+
+#: ../schema/FinanceAccount.xml
+msgid "liability"
+msgstr ""
+

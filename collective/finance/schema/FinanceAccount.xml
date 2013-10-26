@@ -13,46 +13,46 @@
       </field>
       <field name="closed" type="zope.schema.Bool" form:widget="z3c.form.browser.radio.RadioFieldWidget">
         <default>False</default>
-        <description>Select if this account has closed</description>
+        <description i18n:translate="">Select if this account was closed</description>
         <title>Closed</title>
       </field>
       <field name="account_type" type="zope.schema.Choice">
         <description/>
         <required>False</required>
-        <title>Account Type</title>
+        <title i18n:translate="">Account Type</title>
         <values>
-          <element>cash</element>
-          <element>bank</element>
-          <element>credit card</element>
-          <element>asset</element>
-          <element>liability</element>
+          <element i18n:translate="">cash</element>
+          <element i18n:translate="">bank</element>
+          <element i18n:translate="">credit card</element>
+          <element i18n:translate="">asset</element>
+          <element i18n:translate="">liability</element>
         </values>
       </field>
       <field name="exclude_from_summary" type="zope.schema.Bool" form:widget="z3c.form.browser.radio.RadioFieldWidget">
         <default>False</default>
         <description/>
-        <title>Exclude from summary</title>
+        <title i18n:translate="">Exclude from summary</title>
       </field>
       <field name="exclude_from_budget" type="zope.schema.Bool" form:widget="z3c.form.browser.radio.RadioFieldWidget">
         <default>False</default>
         <description/>
-        <title>Exclude from budget</title>
+        <title i18n:translate="">Exclude from budget</title>
       </field>
       <field name="exclude_from_reports" type="zope.schema.Bool" form:widget="z3c.form.browser.radio.RadioFieldWidget">
         <default>False</default>
         <description/>
-        <title>Exclude from reports</title>
+        <title i18n:translate="">Exclude from reports</title>
       </field>
       <field name="starting_balance" type="zope.schema.Float">
         <default>0.0</default>
         <description/>
         <required>False</required>
-        <title>Starting balance</title>
+        <title i18n:translate="">Starting balance</title>
       </field>
       <field name="currency" type="zope.schema.Choice">
         <description/>
         <required>False</required>
-        <title>Currency</title>
+        <title i18n:translate="">Currency</title>
         <vocabulary>collective.finance.currencies</vocabulary>
       </field>
     </schema>

@@ -12,14 +12,14 @@
   </field>
   <field name="account" type="zope.schema.Choice">
     <description/>
-    <title>Account</title>
+    <title i18n:translate="">Account</title>
     <required>True</required>
     <vocabulary>collective.finance.accounts</vocabulary>
   </field>
   <field name="payee" type="zope.schema.Choice">
     <description/>
     <required>False</required>
-    <title>Payee</title>
+    <title i18n:translate="">Payee</title>
     <values/>
   </field>
   <field name="category" type="zope.schema.Choice">
@@ -33,19 +33,19 @@
   <field name="currency" type="zope.schema.Choice">
     <description/>
     <required>False</required>
-    <title>Currency</title>
+    <title i18n:translate="">Currency</title>
     <vocabulary>collective.finance.currencies</vocabulary>
   </field>
   <field name="ammount" type="zope.schema.Float">
     <description/>
-    <title>Ammount</title>
+    <title i18n:translate="">Ammount</title>
   </field>
   <field name="income_expense" type="zope.schema.Choice">
     <description/>
-    <title>Income/Expense</title>
+    <title i18n:translate="">Income/Expense</title>
     <values>
-      <element>Expense</element>
-      <element>Income</element>
+      <element i18n:translate="">Expense</element>
+      <element i18n:translate="">Income</element>
     </values>
   </field>
 </schema>
