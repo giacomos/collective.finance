@@ -14,5 +14,5 @@ before_script:
 script:
   - "firefox --version"
   - bin/flake8 setup.py
-  - bin/flake8 plone
+  - bin/flake8 collective
   - bin/test -vvv --all
