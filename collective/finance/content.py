@@ -17,11 +17,13 @@ class FinanceWallet(Container):
     def get_wallet(self):
         return self.aq_inner
 
+
 class FinanceTransaction(Item):
     '''
     Applicazione class
     '''
     implements(IFinanceTransaction)
+
 
 class FinanceTransfer(Item):
     '''

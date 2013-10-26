@@ -5,6 +5,7 @@ from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from Products.CMFCore.utils import getToolByName
 from collective.finance import messageFactory as _
 
+
 class CatalogVocabularyFactory(object):
 
     implements(IVocabularyFactory)
@@ -28,8 +29,9 @@ class CatalogVocabularyFactory(object):
                                        path=path)
 
         terms = [SimpleTerm(title=_(brain.Title), value=brain.UID)
-                    for brain in brains]
+                 for brain in brains]
         return SimpleVocabulary(sorted(terms, key=lambda elem: elem.title))
+
 
 class SimpleVocabularyFactory(object):
     implements(IVocabularyFactory)
@@ -39,10 +41,11 @@ class SimpleVocabularyFactory(object):
 
     def __call__(self, context):
         terms = [SimpleTerm(title=_(title), value=value)
-                    for value, title in self.vocab.iteritems()]
+                 for value, title in self.vocab.iteritems()]
         return SimpleVocabulary(sorted(terms, key=lambda elem: elem.title))
 
 AccountsVocabularyFactory = CatalogVocabularyFactory('FinanceAccount')
 TransactionsVocabularyFactory = CatalogVocabularyFactory('FinanceTransaction')
 TransfersVocabularyFactory = CatalogVocabularyFactory('FinanceTransfer')
-CurrenciesVocabularyFactory = SimpleVocabularyFactory({v.code: v.name for k,v in CURRENCY.iteritems()})
+currency_vocab = {v.code: v.name for k, v in CURRENCY.iteritems()}
+CurrenciesVocabularyFactory = SimpleVocabularyFactory(currency_vocab)

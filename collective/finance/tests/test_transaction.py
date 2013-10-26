@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 import unittest2 as unittest
 from plone.app.testing import TEST_USER_ID, setRoles
-from collective.finance.testing import (
-    COLLECTIVE_FINANCE_INTEGRATION_TESTING,
-    COLLECTIVE_FINANCE_FUNCTIONAL_TESTING
-)
+from collective.finance.testing import \
+    COLLECTIVE_FINANCE_INTEGRATION_TESTING
 from collective.finance.interfaces import IFinanceTransaction
 from zope.component import (
-    getUtility,
     queryUtility,
     createObject
 )
 from plone.dexterity.interfaces import IDexterityFTI
+
 
 class WalletIntegrationTest(unittest.TestCase):
 
@@ -60,4 +58,5 @@ class WalletIntegrationTest(unittest.TestCase):
             'FinanceTransaction',
             'transaction1'
         )
-        self.assertTrue(IFinanceTransaction.providedBy(self.wallet['transaction1']))
+        self.assertTrue(IFinanceTransaction.providedBy(
+            self.wallet['transaction1']))
