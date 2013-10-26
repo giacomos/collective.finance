@@ -36,9 +36,9 @@
     <title i18n:translate="">Currency</title>
     <vocabulary>collective.finance.currencies</vocabulary>
   </field>
-  <field name="ammount" type="zope.schema.Float">
+  <field name="amount" type="zope.schema.Float">
     <description/>
-    <title i18n:translate="">Ammount</title>
+    <title i18n:translate="">Amount</title>
   </field>
   <field name="income_expense" type="zope.schema.Choice">
     <description/>
