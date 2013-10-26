@@ -25,9 +25,15 @@ setup(name='collective.finance',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.app.dexterity',
           'ccy',
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing[robot]'
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
 

@@ -7,7 +7,9 @@
   <include package="plone.app.contentmenu" />
 
   <browser:resourceDirectory
-      name="collective.finance.images"
-      directory="images" />
+    name="collective.finance.images"
+    directory="images"
+    layer="collective.finance.interfaces.IFinanceLayer"
+    />
 
 </configure>

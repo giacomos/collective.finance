@@ -1,0 +1,6 @@
+<layers>
+  <layer
+    name="collective.finance"
+    interface="collective.finance.interfaces.IFinanceLayer"
+    />
+</layers>
