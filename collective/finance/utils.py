@@ -30,9 +30,10 @@ def convertDate(qdate):
 
 class QifItem(object):
     def __init__(self):
-        self.order = ['account', 'date', 'amount', 'cleared', 'num', 'payee', 'memo',
-                      'address', 'category', 'categoryInSplit',
-                      'memoInSplit', 'amountOfSplit', 'toAccount']
+        self.order = ['account', 'date', 'amount', 'cleared',
+                      'num', 'payee', 'memo', 'address', 'category',
+                      'categoryInSplit', 'memoInSplit',
+                      'amountOfSplit', 'toAccount']
 
         self.account = None
         self.date = None
@@ -119,12 +120,13 @@ def parseQIFItem(chunk):
             print ("Skipping unknown line:\n" + str(line))
     return curItem
 
+
 class QIFParser(object):
 
     implements(IQIFParser)
 
     def parseQIFdata(self, data):
-        res = dict.fromkeys(['accounts','transactions', 'categories'], [])
+        res = dict.fromkeys(['accounts', 'transactions', 'categories'], [])
         accounts = []
         transactions = []
         chunks = data.split('^')

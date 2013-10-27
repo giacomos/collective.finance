@@ -11,6 +11,7 @@ from collective.finance import messageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getUtility
 
+
 class ImportQIFView(form.Form):
 
     """ A sample form showing how to mass import users using
