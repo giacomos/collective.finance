@@ -16,7 +16,7 @@
     name="import"
     for="collective.finance.interfaces.IFinanceWallet"
     layer="collective.finance.interfaces.IFinanceLayer"
-    class=".import.ImportQIFView"
+    class=".importQIF.ImportQIFView"
     permission="zope2.View"
     />
 </configure>
