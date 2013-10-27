@@ -13,7 +13,7 @@
     />
 
   <browser:page
-    name="import"
+    name="import-qif"
     for="collective.finance.interfaces.IFinanceWallet"
     layer="collective.finance.interfaces.IFinanceLayer"
     class=".importQIF.ImportQIFView"

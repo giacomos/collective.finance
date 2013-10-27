@@ -6,7 +6,7 @@
    <property name="title">Import QIF</property>
    <property name="description"></property>
    <property
-      name="url_expr">string:${globals_view/getCurrentFolderUrl}/@@import</property>
+      name="url_expr">string:${globals_view/getCurrentFolderUrl}/@@import-qif</property>
    <property name="link_target"></property>
    <property
       name="icon_expr">string:$portal_url/++resource++collective.finance.images/import.gif</property>
