@@ -46,6 +46,7 @@ class SimpleVocabularyFactory(object):
 
 AccountsVocabularyFactory = CatalogVocabularyFactory('FinanceAccount')
 TransactionsVocabularyFactory = CatalogVocabularyFactory('FinanceTransaction')
+CategoriesVocabularyFactory = CatalogVocabularyFactory('FinanceCategory')
 TransfersVocabularyFactory = CatalogVocabularyFactory('FinanceTransfer')
 currency_vocab = {v.code: v.name for k, v in CURRENCY.iteritems()}
 CurrenciesVocabularyFactory = SimpleVocabularyFactory(currency_vocab)

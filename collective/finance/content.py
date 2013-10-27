@@ -6,6 +6,7 @@ from collective.finance.interfaces import IFinanceWallet
 from collective.finance.interfaces import IFinanceAccount
 from collective.finance.interfaces import IFinanceTransaction
 from collective.finance.interfaces import IFinanceTransfer
+from collective.finance.interfaces import IFinanceCategory
 
 
 class FinanceWallet(Container):
@@ -37,3 +38,10 @@ class FinanceAccount(Item):
     Applicazione class
     '''
     implements(IFinanceAccount)
+
+
+class FinanceCategory(Item):
+    '''
+    Applicazione class
+    '''
+    implements(IFinanceCategory)

@@ -1,0 +1,14 @@
+<model xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="title" type="zope.schema.TextLine">
+      <description/>
+      <title>Title</title>
+    </field>
+    <field name="parent_category" type="zope.schema.Choice">
+      <description/>
+      <required>False</required>
+      <title>Parent Category</title>
+      <vocabulary>collective.finance.categories</vocabulary>
+    </field>
+  </schema>
+</model>

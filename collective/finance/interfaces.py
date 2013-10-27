@@ -33,6 +33,11 @@ class IFinanceTransaction(Interface):
     """
 
 
+class IFinanceCategory(Interface):
+    """
+    """
+
+
 class IImportQIFFormSchema(Interface):
     """ Define fields used on the form """
 

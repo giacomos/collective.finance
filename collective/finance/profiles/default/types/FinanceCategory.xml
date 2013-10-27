@@ -1,22 +1,17 @@
 <?xml version="1.0"?>
-<object name="wallet" meta_type="Dexterity FTI" i18n:domain="plone"
+<object name="transfer" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Wallet</property>
- <property name="description"
-    i18n:translate="">A container for finance managment</property>
- <property name="icon_expr">string:${portal_url}/++resource++collective.finance.images/wallet.png</property>
- <property name="factory">FinanceWallet</property>
- <property name="add_view_expr">string:${folder_url}/++add++FinanceWallet</property>
+ <property name="title" i18n:translate="">Category</property>
+ <property name="description" i18n:translate="">None</property>
+ <property name="icon_expr">string:${portal_url}/++resource++collective.finance.images/category.png</property>
+ <property name="factory">FinanceCategory</property>
+ <property
+    name="add_view_expr">string:${folder_url}/++add++FinanceCategory</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
- <property name="allowed_content_types">
-  <element value="FinanceTransfer"/>
-  <element value="FinanceAccount"/>
-  <element value="FinanceTransaction"/>
-  <element value="FinanceCategory"/>
- </property>
+ <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>
  <property name="default_view">view</property>
  <property name="view_methods">
@@ -24,16 +19,13 @@
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
- <property name="klass">collective.finance.content.FinanceWallet</property>
+ <property name="klass">collective.finance.content.FinanceCategory</property>
  <property name="behaviors">
-  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
-  <element
-     value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
  </property>
  <property name="schema"></property>
  <property name="model_source"></property>
- <property name="model_file">collective.finance.schema:FinanceWallet.xml</property>
+ <property name="model_file">collective.finance.schema:FinanceCategory.xml</property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>

@@ -45,6 +45,10 @@
     component=".vocabs.AccountTypesVocabularyFactory"
     name="collective.finance.account_types"
     />
+  <utility
+    component=".vocabs.CategoriesVocabularyFactory"
+    name="collective.finance.categories"
+    />
 
   <utility
     name="collective.finance.qifparser"

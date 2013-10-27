@@ -29,7 +29,7 @@
     </description>
     <required>False</required>
     <title i18n:domain="plone" i18n:translate="label_tags">Tags</title>
-    <values />
+    <vocabulary>collective.finance.categories</vocabulary>
   </field>
   <field name="currency" type="zope.schema.Choice">
     <description/>
