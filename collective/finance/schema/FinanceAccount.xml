@@ -20,13 +20,7 @@
         <description/>
         <required>False</required>
         <title i18n:translate="">Account Type</title>
-        <values>
-          <element i18n:translate="">cash</element>
-          <element i18n:translate="">bank</element>
-          <element i18n:translate="">credit card</element>
-          <element i18n:translate="">asset</element>
-          <element i18n:translate="">liability</element>
-        </values>
+        <vocabulary>collective.finance.account_types</vocabulary>
       </field>
       <field name="exclude_from_summary" type="zope.schema.Bool" form:widget="z3c.form.browser.radio.RadioFieldWidget">
         <default>False</default>

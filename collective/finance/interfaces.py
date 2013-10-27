@@ -1,4 +1,6 @@
 from zope.interface import Interface
+from plone.namedfile.field import NamedFile
+from collective.finance import messageFactory as _
 
 
 class IFinanceLayer(Interface):
@@ -29,3 +31,9 @@ class IFinanceTransfer(Interface):
 class IFinanceTransaction(Interface):
     """
     """
+
+
+class IImportQIFFormSchema(Interface):
+    """ Define fields used on the form """
+
+    qif_file = NamedFile(title=_(u"QIF file"))

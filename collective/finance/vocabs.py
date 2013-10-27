@@ -49,3 +49,15 @@ TransactionsVocabularyFactory = CatalogVocabularyFactory('FinanceTransaction')
 TransfersVocabularyFactory = CatalogVocabularyFactory('FinanceTransfer')
 currency_vocab = {v.code: v.name for k, v in CURRENCY.iteritems()}
 CurrenciesVocabularyFactory = SimpleVocabularyFactory(currency_vocab)
+
+
+account_types = {
+    'Cash': 'Cash',
+    'Bank': 'Bank',
+    'CCard': 'Credit Card',
+    'Invst': 'Investing',
+    'Oth A': 'Asset',
+    'Oth L': 'Liability',
+}
+
+AccountTypesVocabularyFactory = SimpleVocabularyFactory(currency_vocab)

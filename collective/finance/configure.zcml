@@ -41,4 +41,8 @@
     component=".vocabs.CurrenciesVocabularyFactory"
     name="collective.finance.currencies"
     />
+  <utility
+    component=".vocabs.AccountTypesVocabularyFactory"
+    name="collective.finance.account_types"
+    />
 </configure>

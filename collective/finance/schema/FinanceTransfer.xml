@@ -3,6 +3,7 @@
     xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     xmlns:form="http://namespaces.plone.org/supermodel/form"
+    xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
     i18n:domain="collective.finance">
     <schema>
       <field name="date" type="zope.schema.Datetime">
@@ -24,6 +25,11 @@
         <description/>
         <title i18n:translate="">Amount</title>
       </field>
+      <field name="memo" type="zope.schema.Text" indexer:searchable="true">
+        <description />
+        <required>False</required>
+        <title i18n:translate="" i18n:domain="plone">Text</title>
+      </field>
       <field name="category" type="zope.schema.Choice">
         <description/>
         <required>False</required>
@@ -35,6 +41,11 @@
         <required>False</required>
         <title i18n:translate="">Currency</title>
         <vocabulary>collective.finance.currencies</vocabulary>
+      </field>
+      <field name="address" type="zope.schema.TextLine">
+        <description/>
+        <required>False</required>
+        <title>Address</title>
       </field>
     </schema>
 </model>
