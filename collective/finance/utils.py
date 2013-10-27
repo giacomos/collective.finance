@@ -4,7 +4,7 @@ from collective.finance.interfaces import IQIFParser
 from zope.interface import implements
 
 
-def convertDate(qdate):
+def parseQifDateTime(qdate):
     """ convert from QIF time format to ISO date string
 
     QIF is like   "7/ 9/98"  "9/ 7/99"  or   "10/10/99"  or "10/10'01" for y2k
@@ -25,16 +25,12 @@ def convertDate(qdate):
         C = "20"
     else:
         C = "19"
-    return C + qdate[6:8] + "-" + qdate[0:2] + "-" + qdate[3:5]
+    iso_date = C + qdate[6:8] + "-" + qdate[0:2] + "-" + qdate[3:5]
+    return datetime.strptime(iso_date, '%Y-%M-%d')
 
 
 class QifItem(object):
     def __init__(self):
-        self.order = ['account', 'date', 'amount', 'cleared',
-                      'num', 'payee', 'memo', 'address', 'category',
-                      'categoryInSplit', 'memoInSplit',
-                      'amountOfSplit', 'toAccount']
-
         self.account = None
         self.date = None
         self.amount = None
@@ -49,24 +45,8 @@ class QifItem(object):
         self.amountOfSplit = None
         self.toAccount = None
 
-    def show(self):
-        pass
-
     def __repr__(self):
-        titles = ','.join(self.order)
-        tmpstring = ','.join([str(self.__dict__[field])
-                              for field in self.order])
-        tmpstring = tmpstring.replace('None', '')
-        return titles + "," + tmpstring
-
-    def dataString(self):
-        """
-        Returns the data of this QIF without a header row
-        """
-        tmpstring = ','.join([str(self.__dict__[field])
-                             for field in self.order])
-        tmpstring = tmpstring.replace('None', '')
-        return tmpstring
+        return "<QifItem units=" + str(self.amount) + ">"
 
 
 def parseQIFItem(chunk):
@@ -81,9 +61,7 @@ def parseQIFItem(chunk):
         if not len(line) or line[0] == '\n' or line.startswith('!Type'):
             continue
         elif line[0] == 'D':
-            date = line[1:]
-            iso_date = convertDate(date)
-            curItem.date = datetime.strptime(iso_date, '%Y-%M-%d')
+            curItem.date = parseQifDateTime(line[1:])
         elif line[0] == 'T':
             curItem.amount = line[1:]
         elif line[0] == 'C':
@@ -129,7 +107,7 @@ class QIFParser(object):
         res = dict.fromkeys(['accounts', 'transactions', 'categories'], [])
         accounts = []
         transactions = []
-        chunks = data.split('^')
+        chunks = data.split('^')[:-1]
         idx = 0
         for chunk in chunks:
             if '!Account' in chunk:
@@ -155,5 +133,7 @@ class QIFParser(object):
                 tr.account = acc['title']
                 transactions.append(tr)
         res['accounts'] = accounts
+        for acc in res['accounts']:
+            del acc['ops']
         res['transactions'] = transactions
         return res

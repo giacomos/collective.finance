@@ -1,0 +1,36 @@
+!Type:Cat
+Nfood
+E
+^
+Nfood:lunch
+E
+^
+!Account
+NMy Cash
+TCash
+^
+!Type:Cash
+D23/10/2013
+T-6.50
+Lfood:lunch
+^
+D22/10/2013
+T-6.00
+Lfood:lunch
+^
+D21/10/2013
+T-5.00
+Lfood:lunch
+^
+D11/10/2013
+T31.00
+L[Cc]
+^
+D10/10/2013
+T-5.50
+Lfood:pub
+^
+!Account
+NMy Cc
+TBank
+^

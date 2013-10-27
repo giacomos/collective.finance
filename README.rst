@@ -2,7 +2,7 @@ Introduction
 ============
 
 .. image:: https://travis-ci.org/giacomos/collective.finance.png?branch=master
-:target: https://travis-ci.org/giacomos/collective.finance
+    :target: https://travis-ci.org/giacomos/collective.finance
 
 Personal Finance Manager for Plone
 
