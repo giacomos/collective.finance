@@ -12,4 +12,11 @@
     layer="collective.finance.interfaces.IFinanceLayer"
     />
 
+  <browser:page
+    name="import"
+    for="collective.finance.interfaces.IFinanceWallet"
+    layer="collective.finance.interfaces.IFinanceLayer"
+    class=".import.ImportQIFView"
+    permission="zope2.View"
+    />
 </configure>
