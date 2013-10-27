@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="object_buttons" meta_type="CMF Action Category">
+  <object name="import-qif" meta_type="CMF Action">
+   <property name="title">Import QIF</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentFolderUrl}/@@import</property>
+   <property name="link_target"></property>
+   <property
+      name="icon_expr">string:$portal_url/++resource++collective.finance.images/import.gif</property>
+   <property
+      name="available_expr">python: object.portal_type == 'FinanceWallet'</property>
+   <property name="permissions">
+    <element value="Import/Export objects"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+</object>
