@@ -11,7 +11,7 @@
         <required>False</required>
         <title>Date</title>
       </field>
-      <field name="from_account" type="zope.schema.Choice">
+      <field name="account" type="zope.schema.Choice">
         <description/>
         <title i18n:translate="">From Account</title>
         <vocabulary>collective.finance.accounts</vocabulary>
