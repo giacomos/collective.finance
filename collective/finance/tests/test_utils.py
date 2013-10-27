@@ -9,12 +9,11 @@ class QIFParserUtilityIntegrationTest(unittest.TestCase):
 
     layer = COLLECTIVE_FINANCE_INTEGRATION_TESTING
 
-
     def test_getutility(self):
         from zope.component import getUtility
         from collective.finance.interfaces import IQIFParser
         ut = getUtility(IQIFParser, name='collective.finance.qifparser')
-        self.failUnless(str(ut.__class__) == "<class 'collective.finance.utils.QIFParser'>")
+        self.failUnless(ut)
 
     def test_parsing(self):
         from zope.component import getUtility
