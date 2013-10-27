@@ -35,10 +35,10 @@ class ImportQIFView(form.Form):
         struct = ut.parseQIFdata(data)
         acc_uids = {}
         for account in struct['accounts']:
-            title = account['title']
+            title = account.name
             obj_id = self.context.invokeFactory('FinanceAccount', title)
             obj = self.context[obj_id]
-            obj.account_type = account['type']
+            obj.account_type = account.account_type
             obj.title = title
             obj.reindexObject()
             acc_uids[title] = obj.UID()
