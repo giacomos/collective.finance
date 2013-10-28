@@ -24,11 +24,14 @@ Lfood:lunch
 ^
 D11/10/2013
 T31.00
-L[Cc]
+L[My Cc]
 ^
-D10/10/2013
-T-5.50
-Lfood:pub
+D11/10/2013
+T-48.00
+S[My Cc]
+$-31.00
+Sfood:lunch
+$-17.00
 ^
 !Account
 NMy Cc

@@ -62,6 +62,15 @@ class Category(object):
         return '<Category: %s>' % self.name
 
 
+class AmountSplit(object):
+    def __init__(self):
+        self.category = None
+        self.amount = None
+        self.memo = None
+
+        self.toAccount = None
+
+
 class Transaction(object):
     def __init__(self):
         self.account = None
@@ -73,10 +82,12 @@ class Transaction(object):
         self.memo = None
         self.address = None
         self.category = None
-        self.categoryInSplit = None
-        self.memoInSplit = None
-        self.amountOfSplit = None
+#        self.categoryInSplit = None
+#        self.memoInSplit = None
+#        self.amountOfSplit = None
+
         self.toAccount = None
+        self.splits = []
 
     def __repr__(self):
         return "<Transaction units=" + str(self.amount) + ">"
@@ -96,7 +107,7 @@ def parseTransaction(chunk):
         elif line[0] == 'D':
             curItem.date = parseQifDateTime(line[1:])
         elif line[0] == 'T':
-            curItem.amount = line[1:]
+            curItem.amount = float(line[1:])
         elif line[0] == 'C':
             curItem.cleared = line[1:]
         elif line[0] == 'P':
@@ -112,20 +123,19 @@ def parseTransaction(chunk):
             else:
                 curItem.category = cat
         elif line[0] == 'S':
-            try:
-                curItem.categoryInSplit.append(";" + line[1:-1])
-            except AttributeError:
-                curItem.categoryInSplit = line[1:-1]
+            curItem.splits.append(AmountSplit())
+            split = curItem.splits[-1]
+            cat = line[1:]
+            if cat.startswith('['):
+                split.toAccount = cat[1:-1]
+            else:
+                split.category = cat
         elif line[0] == 'E':
-            try:
-                curItem.memoInSplit.append(";" + line[1:-1])
-            except AttributeError:
-                curItem.memoInSplit = line[1:-1]
+            split = curItem.splits[-1]
+            split.memo = line[1:-1]
         elif line[0] == '$':
-            try:
-                curItem.amountInSplit.append(";" + line[1:-1])
-            except AttributeError:
-                curItem.amountInSplit = line[1:-1]
+            split = curItem.splits[-1]
+            split.amount = float(line[1:-1])
         else:
             # don't recognise this line; ignore it
             print ("Skipping unknown line:\n" + str(line))

@@ -55,16 +55,30 @@ class ImportQIFView(form.Form):
                                                     next_id)
             obj = self.context[obj_id]
             obj.date = item.date
-            obj.amount = float(item.amount)
+            obj.amount = item.amount
             obj.address = item.address
             obj.memo = item.memo
             obj.account = acc_uids[item.account]
             if item.toAccount:
                 obj.to_account = acc_uids[item.toAccount]
             else:
-                obj.income_expense = item.amount.startswith('-') and \
+                obj.income_expense = item.amount < 0 and \
                     'Expense' or 'Income'
-            obj.reindexObject()
+            next_id = 1
+            for split in item.splits:
+                split_id = obj.invokeFactory('FinanceAmountSplit',
+                                             'split-%d' % next_id)
+                split_obj = obj[split_id]
+                if split.toAccount:
+                    split_obj.to_account = acc_uids[split.toAccount]
+                else:
+                    split_obj.income_expense = split.amount < 0 and \
+                        'Expense' or 'Income'
+                split_obj.amount = split.amount
+                split_obj.category = split.category
+                split_obj.memo = split.memo
+                next_id += 1
+#            obj.reindexObject()
         return 'FATTO!!'
 
     @button.buttonAndHandler(_('Import'), name='import')
