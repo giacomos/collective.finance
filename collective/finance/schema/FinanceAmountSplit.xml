@@ -38,5 +38,11 @@
       <element i18n:translate="">Income</element>
     </values>
   </field>
+  <field name="to_account" type="zope.schema.Choice">
+    <description/>
+    <title i18n:translate="">To Account</title>
+    <vocabulary>collective.finance.accounts</vocabulary>
+    <required>False</required>
+  </field>
 </schema>
 </model>
