@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-10-26 13:16+0000\n"
+"POT-Creation-Date: 2013-10-28 10:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,16 @@ msgstr ""
 
 #: ../schema/FinanceTransaction.xml
 #: ../schema/FinanceTransfer.xml
-msgid "Ammount"
+msgid "Amount"
+msgstr ""
+
+#: ../schema/FinanceTransaction.xml
+#: ../schema/FinanceTransfer.xml
+msgid "Cleared status"
+msgstr ""
+
+#: ../browser/importQIF.py:91
+msgid "Created/updated entries:"
 msgstr ""
 
 #: ../schema/FinanceAccount.xml
@@ -56,6 +65,14 @@ msgstr ""
 msgid "From Account"
 msgstr ""
 
+#: ../browser/importQIF.py:70
+msgid "Import"
+msgstr ""
+
+#: ../browser/importQIF.py:21
+msgid "Import QIF"
+msgstr ""
+
 #: ../schema/FinanceTransaction.xml
 msgid "Income"
 msgstr ""
@@ -66,6 +83,10 @@ msgstr ""
 
 #: ../schema/FinanceTransaction.xml
 msgid "Payee"
+msgstr ""
+
+#: ../interfaces.py:44
+msgid "QIF file"
 msgstr ""
 
 #: ../schema/FinanceAccount.xml
@@ -80,23 +101,18 @@ msgstr ""
 msgid "To Account"
 msgstr ""
 
-#: ../schema/FinanceAccount.xml
-msgid "asset"
+#: ../schema/FinanceTransaction.xml
+#: ../schema/FinanceTransfer.xml
+msgid "cleared"
 msgstr ""
 
-#: ../schema/FinanceAccount.xml
-msgid "bank"
+#: ../schema/FinanceTransaction.xml
+#: ../schema/FinanceTransfer.xml
+msgid "not cleared"
 msgstr ""
 
-#: ../schema/FinanceAccount.xml
-msgid "cash"
-msgstr ""
-
-#: ../schema/FinanceAccount.xml
-msgid "credit card"
-msgstr ""
-
-#: ../schema/FinanceAccount.xml
-msgid "liability"
+#: ../schema/FinanceTransaction.xml
+#: ../schema/FinanceTransfer.xml
+msgid "reconciled"
 msgstr ""
 
