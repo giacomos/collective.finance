@@ -13,6 +13,7 @@
       </field>
       <field name="account" type="zope.schema.Choice">
         <description/>
+        <required>True</required>
         <title i18n:translate="">From Account</title>
         <vocabulary>collective.finance.accounts</vocabulary>
       </field>
@@ -20,6 +21,7 @@
         <description/>
         <title i18n:translate="">To Account</title>
         <vocabulary>collective.finance.accounts</vocabulary>
+        <required>True</required>
       </field>
       <field name="amount" type="zope.schema.Float">
         <description/>
