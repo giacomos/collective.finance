@@ -4,6 +4,7 @@
  <object name="FinanceWallet" meta_type="Dexterity FTI"/>
  <object name="FinanceAccount" meta_type="Dexterity FTI"/>
  <object name="FinanceTransaction" meta_type="Dexterity FTI"/>
+ <object name="FinanceAmountSplit" meta_type="Dexterity FTI"/>
  <object name="FinanceTransfer" meta_type="Dexterity FTI"/>
  <object name="FinanceCategory" meta_type="Dexterity FTI"/>
 </object>

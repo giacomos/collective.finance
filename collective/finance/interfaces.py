@@ -33,6 +33,11 @@ class IFinanceTransaction(Interface):
     """
 
 
+class IFinanceAmountSplit(Interface):
+    """
+    """
+
+
 class IFinanceCategory(Interface):
     """
     """

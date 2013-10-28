@@ -2,11 +2,14 @@ from plone.dexterity.content import Item
 from plone.dexterity.content import Container
 from zope.interface import implements
 
-from collective.finance.interfaces import IFinanceWallet
-from collective.finance.interfaces import IFinanceAccount
-from collective.finance.interfaces import IFinanceTransaction
-from collective.finance.interfaces import IFinanceTransfer
-from collective.finance.interfaces import IFinanceCategory
+from collective.finance.interfaces import (
+    IFinanceWallet,
+    IFinanceAccount,
+    IFinanceTransaction,
+    IFinanceTransfer,
+    IFinanceCategory,
+    IFinanceAmountSplit
+)
 
 
 class FinanceWallet(Container):
@@ -19,11 +22,18 @@ class FinanceWallet(Container):
         return self.aq_inner
 
 
-class FinanceTransaction(Item):
+class FinanceTransaction(Container):
     '''
     Applicazione class
     '''
     implements(IFinanceTransaction)
+
+
+class FinanceAmountSplit(Item):
+    '''
+    Applicazione class
+    '''
+    implements(IFinanceAmountSplit)
 
 
 class FinanceTransfer(Item):

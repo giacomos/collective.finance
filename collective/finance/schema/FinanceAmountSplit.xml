@@ -1,0 +1,42 @@
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+    xmlns:security="http://namespaces.plone.org/supermodel/security"
+    xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:form="http://namespaces.plone.org/supermodel/form"
+    xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
+    i18n:domain="collective.finance">
+  <schema>
+
+  <field name="category" type="zope.schema.Choice">
+    <description i18n:domain="plone" i18n:translate="help_tags">
+        Tags are commonly used for ad-hoc organization of content.
+    </description>
+    <required>False</required>
+    <title i18n:domain="plone" i18n:translate="label_tags">Tags</title>
+    <vocabulary>collective.finance.categories</vocabulary>
+  </field>
+  <field name="currency" type="zope.schema.Choice">
+    <description/>
+    <required>False</required>
+    <title i18n:translate="">Currency</title>
+    <vocabulary>collective.finance.currencies</vocabulary>
+  </field>
+  <field name="amount" type="zope.schema.Float">
+    <description/>
+    <title i18n:translate="">Amount</title>
+  </field>
+  <field name="memo" type="zope.schema.Text" indexer:searchable="true">
+    <description />
+    <required>False</required>
+    <title i18n:translate="" i18n:domain="plone">Text</title>
+  </field>
+  <field name="income_expense" type="zope.schema.Choice">
+    <description/>
+    <title i18n:translate="">Income/Expense</title>
+    <values>
+      <element i18n:translate="">Expense</element>
+      <element i18n:translate="">Income</element>
+    </values>
+  </field>
+</schema>
+</model>
