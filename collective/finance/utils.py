@@ -3,6 +3,15 @@ from datetime import datetime
 from collective.finance.interfaces import IQIFParser
 from zope.interface import implements
 
+ACCOUNT_TYPES = [
+    '!Type:Cash',
+    '!Type:Bank',
+    '!Type:Ccard',
+    '!Type:Oth A',
+    '!Type:Oth L',
+    '!Type:Invoice',
+]
+
 
 def parseQifDateTime(qdate):
     """ convert from QIF time format to ISO date string
@@ -74,6 +83,9 @@ class AmountSplit(object):
 class Transaction(object):
     def __init__(self):
         self.account = None
+        self.toAccount = None
+        self.splits = []
+
         self.date = None
         self.amount = None
         self.cleared = None
@@ -86,11 +98,63 @@ class Transaction(object):
 #        self.memoInSplit = None
 #        self.amountOfSplit = None
 
-        self.toAccount = None
-        self.splits = []
-
     def __repr__(self):
         return "<Transaction units=" + str(self.amount) + ">"
+
+
+class Investment(object):
+    def __init__(self):
+        self.account = None
+        self.toAccount = None  # L, account for a trasnfer
+
+        self.date = None  # D, date
+        self.action = None  # N, investment action
+        self.security = None  # Y, security name
+        self.price = None  # I, price
+        self.quantity = None  # Q, quantity
+        self.cleared = None  # C, cleared status
+        self.amount = None  # T, amount
+        self.memo = None  # M, memo
+        self.first_line = None  # P, text in the first line
+        self.amount_transfer = None  # $, amount for a transfer
+        self.commission = None  # O, commission_cost
+
+    def __repr__(self):
+        return "<Investment units=" + str(self.amount) + ">"
+
+
+def parseInvestment(chunk):
+    """
+    """
+
+    curItem = Investment()
+    lines = chunk.split('\n')
+    for line in lines:
+        if not len(line) or line[0] == '\n' or line.startswith('!Type'):
+            continue
+        elif line[0] == 'D':
+            curItem.date = parseQifDateTime(line[1:])
+        elif line[0] == 'T':
+            curItem.amount = float(line[1:])
+        elif line[0] == 'N':
+            curItem.action = line[1:]
+        elif line[0] == 'Y':
+            curItem.security = line[1:]
+        elif line[0] == 'I':
+            curItem.price = line[1:]
+        elif line[0] == 'Q':
+            curItem.quantity = line[1:]
+        elif line[0] == 'C':
+            curItem.cleared = line[1:]
+        elif line[0] == 'M':
+            curItem.memo = line[1:]
+        elif line[0] == 'P':
+            curItem.first_line = line[1:]
+        elif line[0] == '$':
+            curItem.amount_transfer = float(line[1:])
+        elif line[0] == 'O':
+            curItem.commission = float(line[1:])
+    return curItem
 
 
 def parseTransaction(chunk):
@@ -98,8 +162,6 @@ def parseTransaction(chunk):
     """
 
     curItem = Transaction()
-    chunk = chunk.startswith('\n') and chunk[1:] or chunk
-    chunk = chunk.endswith('\n') and chunk[:-1] or chunk
     lines = chunk.split('\n')
     for line in lines:
         if not len(line) or line[0] == '\n' or line.startswith('!Type'):
@@ -146,8 +208,6 @@ def parseAccount(chunk):
     """
     """
     curItem = Account()
-    chunk = chunk.startswith('\n') and chunk[1:] or chunk
-    chunk = chunk.endswith('\n') and chunk[:-1] or chunk
     lines = chunk.split('\n')
     for line in lines:
         if not len(line) or line[0] == '\n' or line.startswith('!Account'):
@@ -173,8 +233,6 @@ def parseCategory(chunk):
     """
     """
     curItem = Category()
-    chunk = chunk.startswith('\n') and chunk[1:] or chunk
-    chunk = chunk.endswith('\n') and chunk[:-1] or chunk
     lines = chunk.split('\n')
     for line in lines:
         if not len(line) or line[0] == '\n' or line.startswith('!Type'):
@@ -208,37 +266,33 @@ class QIFParser(object):
     implements(IQIFParser)
 
     def parseQIFdata(self, data):
-        res = dict.fromkeys(['accounts', 'transactions', 'categories'], [])
-        accounts = []
-        transactions = []
-        chunks = data.split('^')[:-1]
-        idx = 0
-        account_indexes = []
-        account_ops = {}
+        res = {
+            'accounts': [],
+            'transactions': [],
+            'categories': [],
+            'investments': []
+        }
+        chunks = data.split('\n^\n')
+        last_type = None
+        parsers = {
+            'categories': parseCategory,
+            'accounts': parseAccount,
+            'transactions': parseTransaction,
+            'investments': parseInvestment
+        }
         for chunk in chunks:
-            if '!Account' in chunk:
-                account = parseAccount(chunk)
-                account_indexes.append(idx)
-                accounts.append(account)
-            idx += 1
-        num = len(accounts)
-        ### This can be done better for sure
-        categories = [parseCategory(chunk)
-                      for chunk in chunks[0:account_indexes[0]]]
-        for i in range(num):
-            if i < num - 1:
-                slice_start = account_indexes[i] + 1
-                slice_end = account_indexes[i + 1]
-            else:
-                slice_start = account_indexes[i] + 1
-                slice_end = len(chunks)
-            account_ops[accounts[i].name] = chunks[slice_start:slice_end]
-        for acc in accounts:
-            for op in account_ops[acc.name]:
-                tr = parseTransaction(op)
-                tr.account = acc.name
-                transactions.append(tr)
-        res['accounts'] = accounts
-        res['transactions'] = transactions
-        res['categories'] = categories
+            if chunk.startswith('!Type:Cat'):
+                last_type = 'categories'
+            elif chunk.startswith('!Account'):
+                last_type = 'accounts'
+            elif chunk.split('\n')[0] in ACCOUNT_TYPES:
+                last_type = 'transactions'
+            elif chunk.startswith('!Type:Invst'):
+                last_type = 'investments'
+            elif chunk.startswith('!Type:Class'):
+                continue  # yet to be done!
+            elif chunk.startswith('!Type:Memorized'):
+                continue  # yet to be done!
+            parsed_item = parsers[last_type](chunk)
+            res[last_type].append(parsed_item)
         return res
