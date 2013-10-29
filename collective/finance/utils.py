@@ -3,13 +3,13 @@ from datetime import datetime
 from collective.finance.interfaces import IQIFParser
 from zope.interface import implements
 
-ACCOUNT_TYPES = [
+NON_INVST_ACCOUNT_TYPES = [
     '!Type:Cash',
     '!Type:Bank',
     '!Type:Ccard',
     '!Type:Oth A',
     '!Type:Oth L',
-    '!Type:Invoice',
+    '!Type:Invoice',  # Quicken for business only
 ]
 
 
@@ -261,11 +261,17 @@ def parseCategory(chunk):
     return curItem
 
 
+class QifParserException(Exception):
+    pass
+
+
 class QIFParser(object):
 
     implements(IQIFParser)
 
     def parseQIFdata(self, data):
+        if len(data) == 0:
+            raise QifParserException('Data is empty')
         res = {
             'accounts': [],
             'transactions': [],
@@ -285,7 +291,7 @@ class QIFParser(object):
                 last_type = 'categories'
             elif chunk.startswith('!Account'):
                 last_type = 'accounts'
-            elif chunk.split('\n')[0] in ACCOUNT_TYPES:
+            elif chunk.split('\n')[0] in NON_INVST_ACCOUNT_TYPES:
                 last_type = 'transactions'
             elif chunk.startswith('!Type:Invst'):
                 last_type = 'investments'
@@ -293,6 +299,10 @@ class QIFParser(object):
                 continue  # yet to be done!
             elif chunk.startswith('!Type:Memorized'):
                 continue  # yet to be done!
+            elif chunk.startswith('!'):
+                raise QifParserException('Header not reconized')
+            # if no header is recognized then
+            # we use the previous one
             parsed_item = parsers[last_type](chunk)
             res[last_type].append(parsed_item)
         return res
