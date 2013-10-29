@@ -61,4 +61,4 @@ account_types = {
     'Oth L': 'Liability',
 }
 
-AccountTypesVocabularyFactory = SimpleVocabularyFactory(currency_vocab)
+AccountTypesVocabularyFactory = SimpleVocabularyFactory(account_types)

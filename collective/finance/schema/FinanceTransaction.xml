@@ -11,12 +11,6 @@
     <description/>
     <title>Date</title>
   </field>
-  <field name="account" type="zope.schema.Choice">
-    <description/>
-    <title i18n:translate="">Account</title>
-    <required>True</required>
-    <vocabulary>collective.finance.accounts</vocabulary>
-  </field>
   <field name="payee" type="zope.schema.Choice">
     <description/>
     <required>False</required>

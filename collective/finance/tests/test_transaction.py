@@ -29,6 +29,7 @@ class WalletIntegrationTest(unittest.TestCase):
             'FinanceAccount',
             'test-account'
         )
+        self.account = self.wallet['test-account']
 
     def test_schema(self):
         fti = queryUtility(
@@ -54,9 +55,9 @@ class WalletIntegrationTest(unittest.TestCase):
         self.failUnless(IFinanceTransaction.providedBy(new_object))
 
     def test_adding(self):
-        self.wallet.invokeFactory(
+        self.account.invokeFactory(
             'FinanceTransaction',
             'transaction1'
         )
         self.assertTrue(IFinanceTransaction.providedBy(
-            self.wallet['transaction1']))
+            self.account['transaction1']))

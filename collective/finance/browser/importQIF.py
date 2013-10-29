@@ -10,6 +10,7 @@ from collective.finance.interfaces import IQIFParser
 from collective.finance import messageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getUtility
+from plone.i18n.normalizer import urlnormalizer as normalizer
 
 
 class ImportQIFView(form.Form):
@@ -24,7 +25,8 @@ class ImportQIFView(form.Form):
 
     def processAccount(self, context, account):
         title = account.name
-        obj_id = context.invokeFactory('FinanceAccount', title)
+        tmpid = normalizer.normalize(title)
+        obj_id = context.invokeFactory('FinanceAccount', tmpid)
         obj = self.context[obj_id]
         obj.account_type = account.account_type
         obj.title = title
@@ -33,7 +35,8 @@ class ImportQIFView(form.Form):
 
     def processCategory(self, context, category):
         title = category.name
-        obj_id = context.invokeFactory('FinanceCategory', title)
+        tmpid = normalizer.normalize(title)
+        obj_id = context.invokeFactory('FinanceCategory', tmpid)
         obj = self.context[obj_id]
         obj.title = category.name
         if category.income_category:
@@ -64,20 +67,20 @@ class ImportQIFView(form.Form):
         for item in struct['transactions']:
             if not item.date:
                 continue
-            next_id = 'transaction-%d' % (num + 1)
+            next_id = '%d' % (num + 1)
             num += 1
+            acc = self.context[normalizer.normalize(item.account)]
             if item.to_account:
-                obj_id = self.context.invokeFactory('FinanceTransfer',
-                                                    next_id)
+                obj_id = acc.invokeFactory('FinanceTransfer',
+                                           next_id)
             else:
-                obj_id = self.context.invokeFactory('FinanceTransaction',
-                                                    next_id)
-            obj = self.context[obj_id]
+                obj_id = acc.invokeFactory('FinanceTransaction',
+                                           next_id)
+            obj = acc[obj_id]
             obj.date = item.date
             obj.amount = item.amount
             obj.address = item.address
             obj.memo = item.memo
-            obj.account = acc_uids[item.account]
             if item.to_account:
                 obj.to_account = acc_uids[item.to_account]
             else:
