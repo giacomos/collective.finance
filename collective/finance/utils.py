@@ -77,13 +77,13 @@ class AmountSplit(object):
         self.amount = None
         self.memo = None
 
-        self.toAccount = None
+        self.to_account = None
 
 
 class Transaction(object):
     def __init__(self):
         self.account = None
-        self.toAccount = None
+        self.to_account = None
         self.splits = []
 
         self.date = None
@@ -105,7 +105,7 @@ class Transaction(object):
 class Investment(object):
     def __init__(self):
         self.account = None
-        self.toAccount = None  # L, account for a trasnfer
+        self.to_account = None  # L, account for a trasnfer
 
         self.date = None  # D, date
         self.action = None  # N, investment action
@@ -151,7 +151,7 @@ def parseInvestment(chunk):
         elif line[0] == 'P':
             curItem.first_line = line[1:]
         elif line[0] == 'L':
-            curItem.toAccount = line[2:-1]
+            curItem.to_account = line[2:-1]
         elif line[0] == '$':
             curItem.amount_transfer = float(line[1:])
         elif line[0] == 'O':
@@ -183,7 +183,7 @@ def parseTransaction(chunk):
         elif line[0] == 'L':
             cat = line[1:]
             if cat.startswith('['):
-                curItem.toAccount = cat[1:-1]
+                curItem.to_account = cat[1:-1]
             else:
                 curItem.category = cat
         elif line[0] == 'S':
@@ -191,7 +191,7 @@ def parseTransaction(chunk):
             split = curItem.splits[-1]
             cat = line[1:]
             if cat.startswith('['):
-                split.toAccount = cat[1:-1]
+                split.to_account = cat[1:-1]
             else:
                 split.category = cat
         elif line[0] == 'E':
@@ -297,6 +297,8 @@ class QIFParser(object):
                 last_type = 'transactions'
             elif chunk.startswith('!Type:Invst'):
                 last_type = 'investments'
+                # TODO: I should check if the previous accout
+                # is actually and investment account
             elif chunk.startswith('!Type:Class'):
                 continue  # yet to be done!
             elif chunk.startswith('!Type:Memorized'):
@@ -306,5 +308,7 @@ class QIFParser(object):
             # if no header is recognized then
             # we use the previous one
             parsed_item = parsers[last_type](chunk)
+            if last_type == 'transactions':
+                parsed_item.account = res['accounts'][-1].name
             res[last_type].append(parsed_item)
         return res

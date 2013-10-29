@@ -1,4 +1,9 @@
-<model xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema">
+<model 
+    xmlns:form="http://namespaces.plone.org/supermodel/form"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+    xmlns:security="http://namespaces.plone.org/supermodel/security"
+    xmlns="http://namespaces.plone.org/supermodel/schema">
   <schema>
     <field name="title" type="zope.schema.TextLine">
       <description/>
@@ -9,6 +14,16 @@
       <required>False</required>
       <title>Parent Category</title>
       <vocabulary>collective.finance.categories</vocabulary>
+    </field>
+    <field name="income_expense" type="zope.schema.Choice">
+      <description/>
+      <default>Expense</default>
+      <required>True</required>
+      <title i18n:translate="">Income/Expense</title>
+      <values>
+        <element i18n:translate="">Expense</element>
+        <element i18n:translate="">Income</element>
+      </values>
     </field>
   </schema>
 </model>
