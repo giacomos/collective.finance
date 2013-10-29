@@ -150,6 +150,8 @@ def parseInvestment(chunk):
             curItem.memo = line[1:]
         elif line[0] == 'P':
             curItem.first_line = line[1:]
+        elif line[0] == 'L':
+            curItem.toAccount = line[2:-1]
         elif line[0] == '$':
             curItem.amount_transfer = float(line[1:])
         elif line[0] == 'O':
