@@ -32,6 +32,8 @@ setup(name='collective.finance',
           'setuptools',
           'plone.app.dexterity',
           'python-money',
+          'qifparse',
+          'ofxparse',
           # -*- Extra requirements: -*-
       ],
       extras_require={

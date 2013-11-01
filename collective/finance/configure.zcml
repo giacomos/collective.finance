@@ -49,8 +49,4 @@
     component=".vocabs.CategoriesVocabularyFactory"
     name="collective.finance.categories"
     />
-
-  <utility
-    name="collective.finance.qifparser"
-    factory=".utils.QIFParser" />
 </configure>

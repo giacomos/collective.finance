@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
+from qifparse.parser import QifParser
+from StringIO import StringIO
 from z3c.form import (
     form,
     button,
     field
 )
-from Products.CMFCore.utils import getToolByName
 from collective.finance.interfaces import IImportQIFFormSchema
-from collective.finance.interfaces import IQIFParser
 from collective.finance import messageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
-from zope.component import getUtility
 from plone.i18n.normalizer import urlnormalizer as normalizer
 
 
@@ -41,66 +40,59 @@ class ImportQIFView(form.Form):
         obj.title = category.name
         if category.income_category:
             obj.income_expense = 'Income'
-        obj.parent_category = category.parent_category
+#        obj.parent_category = category.parent_category
         obj.reindexObject()
+        return obj
+
+    def processTransaction(self, context, item, obj_id):
+        if not item.date:
+            return
+        if item.to_account:
+            obj_id = context.invokeFactory('FinanceTransfer',
+                                           obj_id)
+        else:
+            obj_id = context.invokeFactory('FinanceTransaction',
+                                           obj_id)
+        obj = context[obj_id]
+        obj.date = item.date
+        obj.amount = item.amount
+        obj.address = item.address
+        obj.memo = item.memo
+        if item.to_account:
+            obj.to_account = item.to_account
+        else:
+            obj.income_expense = item.amount < 0 and \
+                'Expense' or 'Income'
+        next_id = 1
+        for split in item.splits:
+            split_id = obj.invokeFactory('FinanceAmountSplit',
+                                         'split-%d' % next_id)
+            split_obj = obj[split_id]
+            if split.to_account:
+                split_obj.to_account = split.to_account
+            else:
+                split_obj.income_expense = split.amount < 0 and \
+                    'Expense' or 'Income'
+            split_obj.amount = split.amount
+            split_obj.category = split.category
+            split_obj.memo = split.memo
+            next_id += 1
         return obj
 
     def processQIF(self, data):
         """
         """
 
-        catalog = getToolByName(self.context, 'portal_catalog')
-        path = '/'.join(self.context.getPhysicalPath())
-        brains = catalog(path=path, portal_type="FinanceTransaction")
-        num = len(brains)
-        ut = getUtility(IQIFParser, name='collective.finance.qifparser')
-
-        struct = ut.parseQIFdata(data)
-        acc_uids = {}
-        cat_uids = {}
-        for account in struct['accounts']:
-            obj = self.processAccount(self.context, account)
-            acc_uids[obj.title] = obj.UID()
-        for category in struct['categories']:
-            obj = self.processCategory(self.context, category)
-            cat_uids[obj.title] = obj.UID()
-        for item in struct['transactions']:
-            if not item.date:
-                continue
-            next_id = '%d' % (num + 1)
-            num += 1
-            acc = self.context[normalizer.normalize(item.account)]
-            if item.to_account:
-                obj_id = acc.invokeFactory('FinanceTransfer',
-                                           next_id)
-            else:
-                obj_id = acc.invokeFactory('FinanceTransaction',
-                                           next_id)
-            obj = acc[obj_id]
-            obj.date = item.date
-            obj.amount = item.amount
-            obj.address = item.address
-            obj.memo = item.memo
-            if item.to_account:
-                obj.to_account = acc_uids[item.to_account]
-            else:
-                obj.income_expense = item.amount < 0 and \
-                    'Expense' or 'Income'
-            next_id = 1
-            for split in item.splits:
-                split_id = obj.invokeFactory('FinanceAmountSplit',
-                                             'split-%d' % next_id)
-                split_obj = obj[split_id]
-                if split.to_account:
-                    split_obj.to_account = acc_uids[split.to_account]
-                else:
-                    split_obj.income_expense = split.amount < 0 and \
-                        'Expense' or 'Income'
-                split_obj.amount = split.amount
-                split_obj.category = split.category
-                split_obj.memo = split.memo
-                next_id += 1
-#            obj.reindexObject()
+        qif = QifParser.parse(StringIO(data))
+        for account in qif.accounts:
+            new_acc = self.processAccount(self.context, account)
+            num = 1
+            if account.name in qif.transactions:
+                for tr in qif.transactions[account.name]:
+                    self.processTransaction(new_acc, tr, num)
+                    num += 1
+        for category in qif.categories:
+            self.processCategory(self.context, category)
         return 'FATTO!!'
 
     @button.buttonAndHandler(_('Import'), name='import')

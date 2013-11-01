@@ -28,15 +28,6 @@ class FinanceTransaction(Container):
     '''
     implements(IFinanceTransaction)
 
-    def Title(self):
-        descr = self.category and self.category or self.memo
-        title = self.date
-        if self.amount:
-            title += ' ' + '%.2f' % self.amount
-        if descr:
-            title += ' ' + descr
-        return title
-
 
 class FinanceAmountSplit(Item):
     '''

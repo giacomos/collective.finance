@@ -47,10 +47,3 @@ class IImportQIFFormSchema(Interface):
     """ Define fields used on the form """
 
     qif_file = NamedFile(title=_(u"QIF file"))
-
-
-class IQIFParser(Interface):
-
-    def parseQIFdata(data):
-        """
-        """
